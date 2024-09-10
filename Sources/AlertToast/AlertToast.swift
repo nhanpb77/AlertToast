@@ -320,12 +320,11 @@ public struct AlertToast: View{
             .frame(minHeight: 38)
             .alertBackground(style?.backgroundColor ?? nil)
             .clipShape(Rectangle())
-            .overlay(Rectangle().stroke(Color.gray.opacity(0.2), lineWidth: 1))
             .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 6)
             .cornerRadius(6)
             .compositingGroup()
         }
-        .padding(.top)
+        .padding(.top, 20)
     }
     
     ///Alert View
