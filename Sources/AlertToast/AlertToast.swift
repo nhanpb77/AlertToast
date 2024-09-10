@@ -92,7 +92,7 @@ fileprivate struct AnimatedXmark: View {
 public struct AlertToast: View{
     
     public enum BannerAnimation{
-        case slide, pop, drop
+        case slide, pop
     }
     
     /// Determine how the alert will be display
@@ -317,11 +317,12 @@ public struct AlertToast: View{
             }
             .padding(.horizontal, 24)
             .padding(.vertical, 8)
-            .frame(minHeight: 50)
+            .frame(minHeight: 38)
             .alertBackground(style?.backgroundColor ?? nil)
-            .clipShape(Capsule())
-            .overlay(Capsule().stroke(Color.gray.opacity(0.2), lineWidth: 1))
+            .clipShape(Rectangle())
+            .overlay(Rectangle().stroke(Color.gray.opacity(0.2), lineWidth: 1))
             .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 6)
+            .cornerRadius(6)
             .compositingGroup()
         }
         .padding(.top)
@@ -503,7 +504,7 @@ public struct AlertToastModifier: ViewModifier{
                     .onDisappear(perform: {
                         completion?()
                     })
-                    .transition(alert().displayMode == .banner(.slide) ? AnyTransition.slide.combined(with: .opacity) : (alert().displayMode == .banner(.pop) ? AnyTransition.move(edge: .bottom) : AnyTransition.move(edge: .top)))
+                    .transition(alert().displayMode == .banner(.slide) ? AnyTransition.slide.combined(with: .opacity) : AnyTransition.move(edge: .bottom))
             }
             
         }
